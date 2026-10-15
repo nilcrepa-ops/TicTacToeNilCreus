@@ -12,8 +12,27 @@ public class ConsoleUI
         _writer = writer ?? Console.Out;
     }
 
-    public virtual void DrawBoard(Board board)
+    public virtual void ClearScreen()
     {
+        try
+        {
+            if (!Console.IsOutputRedirected)
+            {
+                Console.Clear();
+            }
+        }
+        catch
+        {
+        }
+    }
+
+    public virtual void DrawBoard(Board board, bool clear = false)
+    {
+        if (clear)
+        {
+            ClearScreen();
+        }
+
         _writer.WriteLine();
         for (int row = 0; row < 3; row++)
         {
