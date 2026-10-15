@@ -2,9 +2,6 @@ using TicTacToe.Logic;
 
 namespace TicTacToe.Players;
 
-/// <summary>
-/// Implementation of IPlayer that captures moves from a human user via console/text input with defensive validation.
-/// </summary>
 public class HumanPlayer : IPlayer
 {
     private readonly TextReader _reader;
@@ -21,9 +18,6 @@ public class HumanPlayer : IPlayer
         _writer = writer ?? Console.Out;
     }
 
-    /// <summary>
-    /// Prompts the user to enter a move (1-9) defensively, repeating until a valid, unoccupied cell is chosen.
-    /// </summary>
     public int GetMove(Board virtualBoard)
     {
         while (true)
@@ -33,7 +27,6 @@ public class HumanPlayer : IPlayer
 
             if (rawInput is null)
             {
-                // In case of input stream termination
                 _writer.WriteLine("No input detected. Please try again.");
                 continue;
             }

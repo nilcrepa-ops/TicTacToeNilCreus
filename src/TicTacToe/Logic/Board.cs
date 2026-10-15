@@ -1,30 +1,19 @@
 namespace TicTacToe.Logic;
 
-/// <summary>
-/// Represents the 3x3 game board and manages cell state, move registration, and win/draw evaluations.
-/// </summary>
 public class Board
 {
     public const int BoardSize = 9;
 
     private readonly CellSymbol[] _cells = new CellSymbol[BoardSize];
 
-    /// <summary>
-    /// Precomputed winning combinations (3 rows, 3 columns, 2 diagonals) using 0-based indexing.
-    /// </summary>
     private static readonly int[][] WinningCombinations =
     [
-        // Rows
         [0, 1, 2],
         [3, 4, 5],
         [6, 7, 8],
-
-        // Columns
         [0, 3, 6],
         [1, 4, 7],
         [2, 5, 8],
-
-        // Diagonals
         [0, 4, 8],
         [2, 4, 6]
     ];
@@ -34,9 +23,6 @@ public class Board
         Reset();
     }
 
-    /// <summary>
-    /// Gets the current symbol at the specified 0-based cell position (0 to 8).
-    /// </summary>
     public CellSymbol GetCell(int position)
     {
         if (position < 0 || position >= BoardSize)
@@ -47,9 +33,6 @@ public class Board
         return _cells[position];
     }
 
-    /// <summary>
-    /// Checks whether the specified 0-based cell is within bounds and currently unoccupied.
-    /// </summary>
     public bool IsCellEmpty(int position)
     {
         if (position < 0 || position >= BoardSize)
@@ -60,18 +43,9 @@ public class Board
         return _cells[position] == CellSymbol.Empty;
     }
 
-    /// <summary>
-    /// Registers a move for the specified symbol at the given 0-based position.
-    /// Returns true if the move was successfully placed; false if invalid or already occupied.
-    /// </summary>
     public bool RegisterMove(int position, CellSymbol symbol)
     {
-        if (symbol == CellSymbol.Empty)
-        {
-            return false;
-        }
-
-        if (!IsCellEmpty(position))
+        if (symbol == CellSymbol.Empty || !IsCellEmpty(position))
         {
             return false;
         }
@@ -80,9 +54,6 @@ public class Board
         return true;
     }
 
-    /// <summary>
-    /// Checks if the specified symbol has won by completing any row, column, or diagonal.
-    /// </summary>
     public bool HasWinner(CellSymbol symbol)
     {
         if (symbol == CellSymbol.Empty)
@@ -103,9 +74,6 @@ public class Board
         return false;
     }
 
-    /// <summary>
-    /// Checks if all 9 cells are filled.
-    /// </summary>
     public bool IsFull()
     {
         for (int i = 0; i < BoardSize; i++)
@@ -119,17 +87,11 @@ public class Board
         return true;
     }
 
-    /// <summary>
-    /// Clears all cells on the board, resetting each cell to Empty.
-    /// </summary>
     public void Reset()
     {
         Array.Clear(_cells, 0, BoardSize);
     }
 
-    /// <summary>
-    /// Returns a list of all currently unoccupied 0-based cell positions.
-    /// </summary>
     public IReadOnlyList<int> GetAvailableMoves()
     {
         var available = new List<int>();

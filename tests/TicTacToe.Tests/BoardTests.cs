@@ -82,9 +82,9 @@ public class BoardTests
     }
 
     [Theory]
-    [InlineData(0, 1, 2)] // Row 1
-    [InlineData(3, 4, 5)] // Row 2
-    [InlineData(6, 7, 8)] // Row 3
+    [InlineData(0, 1, 2)]
+    [InlineData(3, 4, 5)]
+    [InlineData(6, 7, 8)]
     public void HasWinner_HorizontalWinningRows_ShouldReturnTrue(int c1, int c2, int c3)
     {
         var board = new Board();
@@ -97,9 +97,9 @@ public class BoardTests
     }
 
     [Theory]
-    [InlineData(0, 3, 6)] // Column 1
-    [InlineData(1, 4, 7)] // Column 2
-    [InlineData(2, 5, 8)] // Column 3
+    [InlineData(0, 3, 6)]
+    [InlineData(1, 4, 7)]
+    [InlineData(2, 5, 8)]
     public void HasWinner_VerticalWinningColumns_ShouldReturnTrue(int c1, int c2, int c3)
     {
         var board = new Board();
@@ -112,8 +112,8 @@ public class BoardTests
     }
 
     [Theory]
-    [InlineData(0, 4, 8)] // Main diagonal
-    [InlineData(2, 4, 6)] // Anti diagonal
+    [InlineData(0, 4, 8)]
+    [InlineData(2, 4, 6)]
     public void HasWinner_DiagonalWinningLines_ShouldReturnTrue(int c1, int c2, int c3)
     {
         var board = new Board();
@@ -139,10 +139,6 @@ public class BoardTests
     public void IsFull_WhenAllCellsFilled_ShouldReturnTrue()
     {
         var board = new Board();
-        // Fill a draw board:
-        // X O X
-        // X X O
-        // O X O
         board.RegisterMove(0, CellSymbol.X);
         board.RegisterMove(1, CellSymbol.O);
         board.RegisterMove(2, CellSymbol.X);
