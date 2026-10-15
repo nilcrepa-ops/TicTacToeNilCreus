@@ -74,6 +74,19 @@ public class Board
         return false;
     }
 
+    public bool WouldWin(int position, CellSymbol symbol)
+    {
+        if (!IsCellEmpty(position) || symbol == CellSymbol.Empty)
+        {
+            return false;
+        }
+
+        _cells[position] = symbol;
+        bool won = HasWinner(symbol);
+        _cells[position] = CellSymbol.Empty;
+        return won;
+    }
+
     public bool IsFull()
     {
         for (int i = 0; i < BoardSize; i++)
