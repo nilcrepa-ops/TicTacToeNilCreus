@@ -26,7 +26,7 @@ public class ConsoleUI
         }
     }
 
-    public virtual void DrawBoard(Board board, bool clear = false)
+    public virtual void DrawBoard(Board board, bool clear = true)
     {
         if (clear)
         {
